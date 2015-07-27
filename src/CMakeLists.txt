@@ -11,6 +11,8 @@ set(Gamepad_SRCS
 set_source_files_properties(
    GamepadHandler
    WRAP_EXCLUDE)    
+   
+set(VTK_MODULES_USED vtkInteractionStyle) 
 
 # A library containing all stuff
 
@@ -34,7 +36,15 @@ if (WRAP_PYTHON)
     
     add_library(vtkGamepadPython MODULE vtkGamepadPythonInit.cxx)
     
-    target_link_libraries(vtkGamepadPython vtkGamepadPythonD)
+    # From David Gobbi, vtk-users list, 27/7/15 "Python wrapping (outside VTK source tree), almost there":
+    # The list of PythonD libraries that you need to link is not exported, but it can be built from 
+    # a list of the modules that you derived your own classes from.
+    set(VTK_PYTHOND_LIBS)
+    foreach(TMP_LIB ${VTK_MODULES_USED})
+        set(VTK_PYTHOND_LIBS ${VTK_PYTHOND_LIBS} ${TMP_LIB}PythonD)
+    endforeach()    
+    
+    target_link_libraries(vtkGamepadPython vtkGamepadPythonD ${VTK_PYTHOND_LIBS})
 
     set_target_properties(vtkGamepadPython PROPERTIES PREFIX "")
     if(WIN32 AND NOT CYGWIN)
