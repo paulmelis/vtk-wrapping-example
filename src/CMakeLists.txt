@@ -4,8 +4,9 @@ set(Gamepad_SRCS
     vtkInteractorStyleGame
     GamepadHandler)
     
-# Don't generate wrapper for this file, as it doesn't derive from vtkObject,
-# so VTK doesn't know how to wrap it (nor do we need it wrapper anyway).
+# Do not generate wrapper code for this file, because
+# 1. It doesn't derive from vtkObject, so VTK doesn't know how to wrap it 
+# 2. We don't need it wrapped anyway
 
 set_source_files_properties(
    GamepadHandler
