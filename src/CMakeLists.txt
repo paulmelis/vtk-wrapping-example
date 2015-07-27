@@ -29,7 +29,7 @@ if (WRAP_PYTHON)
     
     target_link_libraries(vtkGamepadPythonD         
         ${VTK_LIBRARIES}
-        vtkWrappingPythonCore
+        vtkWrappingPythonCore 
         ${VTK_PYTHON_LIBRARIES})
     
     add_library(vtkGamepadPython MODULE vtkGamepadPythonInit.cxx)

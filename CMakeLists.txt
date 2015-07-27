@@ -9,7 +9,8 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC -g -std=c++11")
 option(WRAP_PYTHON "Build Python wrappers" ON)
  
 find_package(VTK REQUIRED 
-    vtkInteractionStyle vtkRenderingOpenGL2 
+    vtkInteractionStyle 
+    vtkRenderingCore vtkRenderingOpenGL2 
     vtkWrappingPythonCore)
     
 include(${VTK_USE_FILE})
